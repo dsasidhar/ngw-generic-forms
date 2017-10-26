@@ -95,7 +95,7 @@ In your component file you can use the template reference captured earlier to ac
 ```
 
 In `afterViewInit` we can then use different methods:
-`this.formVar.setError(fieldName,error)`: set Erros on a specific field.
-`this.formVar.setCustomError(fieldName,error)`: set only customError, this is removed as soon as user changes the field.
-`this.formVar.valid`: validity of the form.
-`this.formVar.value`: get all the current values of the form
+* `this.formVar.setError(fieldName,error)`: set Erros on a specific field.
+* `this.formVar.setCustomError(fieldName,error)`: set only customError, this is removed as soon as user changes the field.
+* `this.formVar.valid`: validity of the form.
+* `this.formVar.value`: get all the current values of the form
