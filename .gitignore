@@ -1,2 +1,3 @@
-./dist/
+dist
 .npmignore
+node_modules
