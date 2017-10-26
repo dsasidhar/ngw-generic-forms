@@ -1,0 +1,23 @@
+{
+  "name": "ngw-generic-forms",
+  "version": "1.0.0",
+  "description": "angular forms that can be generated from an object",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsasidhar/ngw-generic-forms.git"
+  },
+  "keywords": [
+    "anuglar2",
+    "forms"
+  ],
+  "author": "Sasidhar Dwadasi <sasidhar.dwadasi@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dsasidhar/ngw-generic-forms/issues"
+  },
+  "homepage": "https://github.com/dsasidhar/ngw-generic-forms#readme"
+}
