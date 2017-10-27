@@ -67,6 +67,12 @@ export class FormComponent implements AfterViewInit {
             cssClass: 'age-holder'
           },
           {
+              type: 'textarea',
+              name: 'bio',
+              placeholder: 'enter your bio',
+              cssClass: 'bio'
+          },
+          {
             type: 'button',
             name: 'next',
             buttonText: 'Next',

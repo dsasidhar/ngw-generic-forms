@@ -10,6 +10,8 @@ import { FormParentComponent } from './containers/form-parent.component';
 import { FormTemplateComponent } from './components/form-template.component';
 import { FieldBaseComponent } from './components/field-base.component';
 import { FormButtonComponent } from './components/form-button.component';
+import { FormTextBoxComponent } from './components/form-textarea.component';
+
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { FormButtonComponent } from './components/form-button.component';
     FormParentComponent,
     FormTemplateComponent,
     FieldBaseComponent,
-    FormButtonComponent
+    FormButtonComponent,
+    FormTextBoxComponent
   ],
   exports: [
     GenericFormComponent
@@ -35,7 +38,8 @@ import { FormButtonComponent } from './components/form-button.component';
     FormInputComponent,
     FormSelectComponent,
     FormTemplateComponent,
-    FormButtonComponent
+    FormButtonComponent,
+    FormTextBoxComponent
   ]
 })
 export class GenericFormModule {}
