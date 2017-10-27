@@ -1,13 +1,13 @@
 {
   "name": "ngw-generic-forms",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "angular forms that can be generated from an object",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "run": "ts-node ./src/index.ts",
-    "prepublishOnly": "tsc -p ./ --outDir dist/"
+    "prepublishOnly": "tsc -p ./"
   },
   "repository": {
     "type": "git",
@@ -24,9 +24,9 @@
   },
   "homepage": "https://github.com/dsasidhar/ngw-generic-forms#readme",
   "dependencies": {
-    "@angular/common": "^4.4.6",
-    "@angular/core": "^4.4.6",
-    "@angular/forms": "^4.4.6",
-    "rxjs": "^5.5.2"
+    "@angular/common": "^4.0.2",
+    "@angular/core": "^4.0.2",
+    "@angular/forms": "^4.0.2",
+    "rxjs": "^5.3.0"
   }
 }

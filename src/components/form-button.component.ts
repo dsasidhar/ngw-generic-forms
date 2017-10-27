@@ -8,13 +8,25 @@ import { FormFieldBase } from './form-field-base';
         ``
     ],
     template: `
-    <field-base [formGroup]="group" [group]="group" [config]="config" 
+    <field-base [group]="group" [config]="config" 
         [internalClasses]="'form-button'">
-    <button [attr.placeholder]="config.placeholder" 
-        [formControlName]="config.name">{{config.buttonText}}
+        <button [attr.type]="config.buttonType" (click)="buttonClick($event)" (hover)="buttonHover($event)">
+            {{config.buttonText}}
         </button>
     </field-base>
   `
 })
 export class FormButtonComponent extends FormFieldBase {
+    buttonClick($event) {
+        if (this.config.onClick) {
+            this.isFunction(this.config.onClick);
+            this.config.onClick.call(null, $event);
+        }
+    }
+    buttonHover($event){
+        if (this.config.onHover) {
+            this.isFunction(this.config.onHover);
+            this.config.onHover.call(null, $event);
+        }
+    }
 }

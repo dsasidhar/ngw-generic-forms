@@ -1,6 +1,6 @@
 import {
-    Component, Input, OnInit, HostBinding,
-    EventEmitter, Output, ElementRef, Renderer2
+    Component, Input, OnChanges, HostBinding,
+    EventEmitter, Output, ElementRef, Renderer2, ChangeDetectorRef
 } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -13,13 +13,18 @@ import { FormGroup, FormBuilder } from '@angular/forms';
     </ng-container>
   `
 })
-export class FormParentComponent implements OnInit{
+export class FormParentComponent implements OnChanges {
     @Input()
     formParent: any = {};
     @Input()
     group: FormGroup;
-    constructor(private el: ElementRef, private renderer: Renderer2) { }
-    ngOnInit() {
-        this.renderer.addClass(this.el.nativeElement, this.formParent.cssClass || '');
+    constructor(private el: ElementRef, private renderer: Renderer2,
+        private cdr: ChangeDetectorRef) { }
+    ngOnChanges() {
+        let cssClass = (this.formParent.cssClass || '') + ' gen-parent';
+        cssClass.split(' ').filter(className => !!className)
+            .forEach(className => this.renderer.addClass(this.el.nativeElement, className));
+        this.cdr.detectChanges();
+
     }
 }

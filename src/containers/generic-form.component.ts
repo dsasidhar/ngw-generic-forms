@@ -1,6 +1,6 @@
 import {
   Component, Input, OnInit,
-  EventEmitter, Output
+  EventEmitter, Output, ChangeDetectorRef
 } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -27,7 +27,9 @@ export class GenericFormComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({});
-    (<any>this.form).__error = this.config.errorMap;
+    // Hacky, but works for now, I don't see this failing any time soon
+    // don't want to use a service for just this.
+    (<any>this.form).__ngw_error = this.config.errorMap;
   }
   get value() {
     return this.form.value;
@@ -55,6 +57,16 @@ export class GenericFormComponent implements OnInit {
     this.form.controls[fieldName].setErrors({
       ...this.form.controls[fieldName].errors, ...{ __ngw_custom: error }
     }, { emitEvent: true });
+  }
+  setValues(valuesObj, dontThrowError = true) {
+    if(!valuesObj) return;
+    Object.keys(valuesObj).forEach(key => {
+      if(this.form.controls[key]){
+        this.form.controls[key].setValue(valuesObj[key]);
+      }else if(!dontThrowError){
+        throw new Error(`Can't find form field with name ${key}`);
+      }
+    });
   }
 }
 

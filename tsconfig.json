@@ -6,17 +6,19 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": ["dom", "es6", "es2015", "es2016", "es2017"],
-    "noEmitHelpers": true,
+    "noEmitHelpers": false,
     "skipDefaultLibCheck": true,
     "pretty": true,
     "sourceMap": true,
     "strictNullChecks": false,
+    "outDir": "dist",
     "typeRoots": [
       "node_modules/@types"
-    ],
+    ]
   },
   "exclude": [
     "node_modules",
+    "example"
   ],
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true,

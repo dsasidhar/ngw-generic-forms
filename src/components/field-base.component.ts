@@ -39,14 +39,14 @@ export class FieldBaseComponent implements OnChanges, OnInit, OnDestroy {
     private allClasses: String;
     private changeSubscription;
     ngOnChanges() {
-        this.allClasses = `${this.cssClass} ${this.internalClasses}`;
-        this.errorMap = (<any>this.group).__error;
+        this.errorMap = (<any>this.group).__ngw_error;
         if (this.config) {
             this.label = this.config.label;
             this.name = this.config.name;
             this.cssClass = this.config.cssClass;
             this.control = this.group.controls[this.name];
         }
+        this.allClasses = `${this.cssClass} ${this.internalClasses}`;
         this.label = this.config ? this.config.label : null;
     }
     ngOnInit() {
@@ -68,6 +68,7 @@ export class FieldBaseComponent implements OnChanges, OnInit, OnDestroy {
         }
         return this.errorMap[name][err];
     }
+    
     ngOnDestroy() {
         this.changeSubscription.complete.unsubscribe();
     }

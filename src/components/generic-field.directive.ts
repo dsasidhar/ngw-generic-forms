@@ -6,12 +6,13 @@ import { FormGroup } from '@angular/forms';
 import { FormInputComponent } from './form-input.component';
 import { FormSelectComponent } from './form-select.component';
 import { FormTemplateComponent } from './form-template.component';
-
+import { FormButtonComponent } from './form-button.component';
 const components = {
     input: FormInputComponent,
     select: FormSelectComponent,
     template: FormTemplateComponent,
-    'template-field': FormTemplateComponent
+    'template-field': FormTemplateComponent,
+    button: FormButtonComponent
 };
 
 @Directive({
