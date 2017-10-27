@@ -7,6 +7,8 @@ import { Validators } from '@angular/forms'
   Sample forms
   <generic-form #formVar [config]="myConfig"></generic-form>
   <button type="button" (click)="setRandomForm()"> Set random form values</button>
+  <br/>
+  {{formVar.value | json}}
   `
 })
 export class FormComponent implements AfterViewInit {
@@ -47,6 +49,7 @@ export class FormComponent implements AfterViewInit {
       {
         type: 'checkbox',
         name: 'doYouAgree',
+        value: true,
         label: 'Do you Agree to use this component?'
       },
       // {
@@ -65,6 +68,7 @@ export class FormComponent implements AfterViewInit {
         type: 'radio',
         name: 'radio',
         cssClass: 'radio-btn',
+        value: 3,
         options: [
           {label: 'label1',value:1},
           {label: 'label2',value:2},

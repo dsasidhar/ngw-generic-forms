@@ -10,7 +10,7 @@ import { FormFieldBase } from './form-field-base';
     template: `
     <field-base [formGroup]="group" [group]="group" [config]="config" [showLabel]="false"
         [internalClasses]="'form-checkbox'">
-    <input [type]="'checkbox'" [attr.placeholder]="config.placeholder" 
+    <input type="checkbox" [attr.placeholder]="config.placeholder" 
         [formControlName]="config.name" />
     <label *ngIf="config.label">{{config.label}}</label>
     </field-base>
