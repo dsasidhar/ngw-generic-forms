@@ -1,6 +1,6 @@
 {
   "name": "ngw-generic-forms",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "angular forms that can be generated from an object",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

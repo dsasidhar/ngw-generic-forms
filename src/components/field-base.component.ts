@@ -70,6 +70,6 @@ export class FieldBaseComponent implements OnChanges, OnInit, OnDestroy {
     }
     
     ngOnDestroy() {
-        this.changeSubscription.complete.unsubscribe();
+        this.changeSubscription.unsubscribe();
     }
 }
