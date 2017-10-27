@@ -6,7 +6,8 @@
     "build": "rimraf dist && webpack --progress",
     "watch": "npm run build -- --watch",
     "server": "webpack-dev-server --inline --progress --port 3000 --content-base src",
-    "start": "npm run server"
+    "start": "npm run server",
+    "reinstall": "rm -rf './node_modules/ngw-generic-forms' && yarn install --pure-lockfile"
   },
   "contributors": [
     "Rob Wormald <robwormald@gmail.com>",

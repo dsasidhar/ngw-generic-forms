@@ -44,6 +44,11 @@ export class FormComponent implements AfterViewInit {
           Validators.required,
         ])]
       },
+      {
+        type: 'checkbox',
+        name: 'doYouAgree',
+        label: 'Do you Agree to use this component?'
+      },
       // {
       //     type: 'template-field',
       //     name: 'hello',
@@ -55,6 +60,19 @@ export class FormComponent implements AfterViewInit {
         cssClass: 'select-food',
         options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
         placeholder: 'Favourite food'
+      },
+      {
+        type: 'radio',
+        name: 'radio',
+        cssClass: 'radio-btn',
+        options: [
+          {label: 'label1',value:1},
+          {label: 'label2',value:2},
+          {label: 'label3',value:3},
+          {label: 'label4',value:4}
+        ],
+        label: 'radio label',
+        optionClass: 'radio-option-class'
       },
       {
         type: 'container',

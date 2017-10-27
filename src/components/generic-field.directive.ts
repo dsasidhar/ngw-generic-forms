@@ -7,14 +7,19 @@ import { FormInputComponent } from './form-input.component';
 import { FormSelectComponent } from './form-select.component';
 import { FormTemplateComponent } from './form-template.component';
 import { FormButtonComponent } from './form-button.component';
-import { FormTextBoxComponent} from './form-textarea.component';
+import { FormTextBoxComponent } from './form-textarea.component';
+import { FormCheckboxComponent } from './form-checkbox.component';
+import { FormRadioComponent } from './form-radio.component';
+
 const components = {
     input: FormInputComponent,
     select: FormSelectComponent,
     template: FormTemplateComponent,
     'template-field': FormTemplateComponent,
     button: FormButtonComponent,
-    textarea: FormTextBoxComponent
+    textarea: FormTextBoxComponent,
+    checkbox: FormCheckboxComponent,
+    radio: FormRadioComponent
 };
 
 @Directive({

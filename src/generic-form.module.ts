@@ -11,8 +11,18 @@ import { FormTemplateComponent } from './components/form-template.component';
 import { FieldBaseComponent } from './components/field-base.component';
 import { FormButtonComponent } from './components/form-button.component';
 import { FormTextBoxComponent } from './components/form-textarea.component';
+import { FormCheckboxComponent } from './components/form-checkbox.component';
+import { FormRadioComponent } from './components/form-radio.component';
 
-
+const formComponents = [
+  FormInputComponent,
+  FormSelectComponent,
+  FormTemplateComponent,
+  FormButtonComponent,
+  FormTextBoxComponent,
+  FormCheckboxComponent,
+  FormRadioComponent
+];
 
 @NgModule({
   imports: [
@@ -22,24 +32,16 @@ import { FormTextBoxComponent } from './components/form-textarea.component';
   declarations: [
     GenericFormComponent,
     GenericFieldDirective,
-    FormInputComponent,
-    FormSelectComponent,
     FormChildrenComponent,
     FormParentComponent,
-    FormTemplateComponent,
     FieldBaseComponent,
-    FormButtonComponent,
-    FormTextBoxComponent
+    ...formComponents
   ],
   exports: [
     GenericFormComponent
   ],
   entryComponents: [
-    FormInputComponent,
-    FormSelectComponent,
-    FormTemplateComponent,
-    FormButtonComponent,
-    FormTextBoxComponent
+    ...formComponents
   ]
 })
 export class GenericFormModule {}

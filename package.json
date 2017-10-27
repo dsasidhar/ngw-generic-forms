@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "run": "ts-node ./src/index.ts",
-    "prepublishOnly": "tsc -p ./"
+    "prepublishOnly": "tsc -p ./",
+    "testchanges":"npm run prepublishOnly && npm --prefix './example/' run reinstall"
   },
   "repository": {
     "type": "git",

@@ -10,7 +10,7 @@ import { FormFieldBase } from './form-field-base';
     template: `
     <div 
       class="generic-field" [ngClass]="allClasses">
-      <label *ngIf="label">{{ label }}</label>
+      <label *ngIf="showLabel && label">{{ label }}</label>
       <ng-content></ng-content>
       <div class="error-container">
         <ng-container *ngIf="control?.dirty || control?.touched">
@@ -33,6 +33,7 @@ export class FieldBaseComponent implements OnChanges, OnInit, OnDestroy {
     @Input() group;
     @Input() internalClasses;
     @Input() config;
+    @Input() showLabel = true;
     private label = '';
     private name = '';
     private cssClass = '';
@@ -43,7 +44,7 @@ export class FieldBaseComponent implements OnChanges, OnInit, OnDestroy {
         if (this.config) {
             this.label = this.config.label;
             this.name = this.config.name;
-            this.cssClass = this.config.cssClass;
+            this.cssClass = this.config.cssClass || '';
             this.control = this.group.controls[this.name];
         }
         this.allClasses = `${this.cssClass} ${this.internalClasses}`;
