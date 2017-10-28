@@ -34,17 +34,19 @@ export class FieldBaseComponent implements OnChanges, OnInit, OnDestroy {
     @Input() internalClasses;
     @Input() config;
     @Input() showLabel = true;
-    private label = '';
-    private name = '';
+    public label = '';
+    public name = '';
     private cssClass = '';
-    private allClasses: String;
+    public allClasses: String = '';
     private changeSubscription;
+    private disableSubscription;
     ngOnChanges() {
         this.errorMap = (<any>this.group).__ngw_error;
         if (this.config) {
             this.label = this.config.label;
             this.name = this.config.name;
-            this.cssClass = this.config.cssClass || '';
+            this.cssClass = (this.config.cssClass || '') +
+                (this.config.disabled ? ' disabled-element ' : '');
             this.control = this.group.controls[this.name];
         }
         this.allClasses = `${this.cssClass} ${this.internalClasses}`;
@@ -54,6 +56,16 @@ export class FieldBaseComponent implements OnChanges, OnInit, OnDestroy {
         if (this.control) {
             this.changeSubscription = this.control.valueChanges.subscribe(_ => {
                 return this.control.errors && delete this.control.errors.__ngw_custom;
+            });
+            this.control.registerOnDisabledChange(isDisabled => {
+                if (isDisabled) {
+                    if (/ disabled-element /.test(this.allClasses.toString())) {
+                        return;
+                    }
+                    this.allClasses += ' disabled-element ';
+                } else {
+                    this.allClasses = this.allClasses.replace(/ disabled-element /g, '');
+                }
             });
         }
     }
@@ -69,8 +81,10 @@ export class FieldBaseComponent implements OnChanges, OnInit, OnDestroy {
         }
         return this.errorMap[name][err];
     }
-    
+
     ngOnDestroy() {
-        this.changeSubscription.unsubscribe();
+        if (this.changeSubscription && this.changeSubscription.unsubscribe) {
+            this.changeSubscription.unsubscribe();
+        }
     }
 }
