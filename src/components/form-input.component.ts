@@ -10,7 +10,7 @@ import { FormFieldBase } from './form-field-base';
     template: `
     <field-base [formGroup]="group" [group]="group" [config]="config" 
         [internalClasses]="'form-input'">
-    <input [type]="config.inputType" [attr.placeholder]="config.placeholder" 
+    <input [attr.id]="config.id" [type]="config.inputType" [attr.placeholder]="config.placeholder" 
         [formControlName]="config.name" />
     </field-base>
   `

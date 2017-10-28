@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormFieldBase } from './form-field-base';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'form-select',
@@ -9,11 +10,12 @@ import { FormFieldBase } from './form-field-base';
     <field-base [formGroup]="group" [group]="group" [config]="config" 
       [internalClasses]="'form-select'">
       
-      <select [formControlName]="config.name">
+      <select [attr.id]="config.id" [formControlName]="config.name">
 
-        <option value="">{{ config.placeholder }}</option>
-        <option *ngFor="let option of config.options">
-          {{ option }}
+        <option [disabled]="config.disablePlaceHolderOption" value="">{{ config.placeholder }}</option>
+        <option [value]="option?.value"
+          *ngFor="let option of isObservable() ? (config.options | async): (config.options)">
+          {{ option?.label }}
         </option>
 
       </select>
@@ -21,5 +23,8 @@ import { FormFieldBase } from './form-field-base';
     </field-base>
   `
 })
-export class FormSelectComponent extends FormFieldBase {
+export class FormSelectComponent extends FormFieldBase{
+  isObservable(){
+    return !!(this.config.options instanceof Observable);
+  }
 }

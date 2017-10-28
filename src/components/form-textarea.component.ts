@@ -10,7 +10,7 @@ import { FormFieldBase } from './form-field-base';
     template: `
     <field-base [formGroup]="group" [group]="group" [config]="config" 
         [internalClasses]="'form-textarea'">
-    <textarea [attr.placeholder]="config.placeholder" 
+    <textarea [attr.id]="config.id" [attr.placeholder]="config.placeholder" 
         [formControlName]="config.name" >
         {{config.value}}
         </textarea>

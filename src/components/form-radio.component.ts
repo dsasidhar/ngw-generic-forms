@@ -11,10 +11,13 @@ import { FormFieldBase } from './form-field-base';
     <field-base [formGroup]="group" [group]="group" [config]="config" 
         [internalClasses]="'form-radio'">
         <ng-container *ngFor="let option of config.options">
+        <div>
         <input  type="radio" [value]="option.value" [name]="config.name"
             [formControlName]="config.name" />
             <div class="field-radio-option"
                 [ngClass]="config.optionClass">{{option.label}}</div>
+
+        </div>
         </ng-container>
     </field-base>
   `

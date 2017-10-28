@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, EventEmitter, Output,ChangeDetectorRef } from '@angular/core';
+import { Component, Input, EventEmitter, Output,ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -16,23 +16,11 @@ import { FormGroup, FormBuilder } from '@angular/forms';
       </ng-container>
   `
 })
-export class FormChildrenComponent implements OnInit {
+export class FormChildrenComponent {
     @Input()
     children: any[] = [];
     @Input()
     group: FormGroup;
 
     constructor(private fb: FormBuilder) { }
-
-    ngOnInit() {
-        this.children
-            .filter(control => control.type !== 'container' && control.type !== 'template')
-            .forEach(control => this.group.addControl(control.name, this.fb.control(
-                {
-                    value: control.value,
-                    disabled: control.disabled
-                },
-                control.validators
-            )));
-    }
 }

@@ -23,19 +23,25 @@ export class GenericFormComponent implements OnInit {
   form: FormGroup;
   private subscriptions: any[] = [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({});
+  }
 
   ngOnInit() {
-    this.form = this.fb.group({});
     // Hacky, but works for now, I don't see this failing any time soon
     // don't want to use a service for just this.
-    (<any>this.form).__ngw_error = this.config.errorMap;
+    if(this.config){
+      (<any>this.form).__ngw_error = this.config.errorMap;
+    }
   }
   get value() {
     return this.form.value;
   }
   get valid() {
     return this.form.valid;
+  }
+  get controls() {
+    return this.form.controls;
   }
   onSubmit(event: Event) {
     event.preventDefault();
@@ -59,15 +65,22 @@ export class GenericFormComponent implements OnInit {
     }, { emitEvent: true });
   }
   setValues(valuesObj, dontThrowError = true) {
-    if(!valuesObj) return;
+    if (!valuesObj) return;
     Object.keys(valuesObj).forEach(key => {
-      if(this.form.controls[key]){
+      if (this.form.controls[key]) {
         this.form.controls[key].setValue(valuesObj[key]);
-      }else if(!dontThrowError){
+      } else if (!dontThrowError) {
         throw new Error(`Can't find form field with name ${key}`);
       }
     });
   }
+
+  setDisableStatus(name, disable) {
+    if (this.form.controls[name]) {
+      this.form.controls[name][ disable ? 'disable' : 'enable']();
+    }
+  }
+
 }
 
 function flattenArray(arr) {
