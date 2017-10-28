@@ -38,7 +38,8 @@ const formComponents = [
     ...formComponents
   ],
   exports: [
-    GenericFormComponent
+    GenericFormComponent,
+    FieldBaseComponent
   ],
   entryComponents: [
     ...formComponents
