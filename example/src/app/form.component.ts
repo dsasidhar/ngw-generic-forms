@@ -158,6 +158,7 @@ export class FormComponent implements AfterViewInit {
             type: 'button', //no button type, this will trigger form submit
             name: 'next',
             buttonText: 'Next',
+            enableOnValid: true,
             cssClass: 'next-btn btn',
             onClick: (event) => {
               console.log('button clicked', event, this);

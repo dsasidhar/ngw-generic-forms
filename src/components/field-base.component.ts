@@ -54,7 +54,10 @@ export class FieldBaseComponent implements OnChanges, OnInit, OnDestroy {
     }
     ngOnInit() {
         if (this.control) {
-            this.changeSubscription = this.control.valueChanges.subscribe(_ => {
+            this.changeSubscription = this.control.valueChanges.subscribe((...arr) => {
+                if(this.config.onChanges && typeof this.config.onChanges === 'function'){
+                    this.config.onChanges.apply(null,arr);
+                }
                 return this.control.errors && delete this.control.errors.__ngw_custom;
             });
             this.control.registerOnDisabledChange(isDisabled => {

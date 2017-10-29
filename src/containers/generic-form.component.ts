@@ -40,6 +40,12 @@ export class GenericFormComponent implements OnInit {
   get valid() {
     return this.form.valid;
   }
+  get status(){
+    return this.form.status;
+  }
+  get dirty(){
+    return this.form.dirty;
+  }
   get controls() {
     return this.form.controls;
   }

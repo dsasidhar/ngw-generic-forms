@@ -69,7 +69,7 @@ export class GenericFieldDirective implements OnInit, OnDestroy, OnChanges {
         if (!this.config.doNotAddtoForm &&
             this.config.type !== 'container' &&
             this.config.type !== 'template') {
-        // If this control needs to be added to the form we add it
+            // If this control needs to be added to the form we add it
             this.group.addControl(this.config.name, this.fb.control(
                 {
                     value: this.config.value,
@@ -93,12 +93,14 @@ export class GenericFieldDirective implements OnInit, OnDestroy, OnChanges {
 
         // What if the type of element is changed ? huh??
         // This opens up a whole new can of worms.
-        if(changes.type.previousValue !== changes.type.currentValue){
+        if (changes.config && changes.config.previousValue &&
+            (changes.config.previousValue.type !== changes.config.currentValue.type)) {
             throw new Error('Change in form elment type is not yet supported');
         }
-
-        this.component.instance.config = this.config;
-        this.component.instance.group = this.group;
+        if (this.component) {
+            this.component.instance.config = this.config;
+            this.component.instance.group = this.group;
+        }
     }
 
 }

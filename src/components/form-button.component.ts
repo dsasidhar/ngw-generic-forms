@@ -10,7 +10,8 @@ import { FormFieldBase } from './form-field-base';
     template: `
     <field-base [group]="group" [config]="config" 
         [internalClasses]="'form-button'">
-        <button [attr.type]="config.buttonType" (click)="buttonClick($event)" (hover)="buttonHover($event)">
+        <button [attr.type]="config.buttonType" [disabled]="config.enableOnValid && !group.valid"
+            (click)="buttonClick($event)" (hover)="buttonHover($event)">
             {{config.buttonText}}
         </button>
     </field-base>
