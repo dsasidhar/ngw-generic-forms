@@ -23,8 +23,20 @@ export class GenericFormComponent implements OnInit {
   form: FormGroup;
   private subscriptions: any[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
     this.form = this.fb.group({});
+  }
+  ngOnChanges(){
+    // This looks like its not too bright an idea, but makes access very easy
+    // especially on long forms with many nesting levels. So hanging on to it for the moment.
+    let controls = flattenArray(this.config);
+    Object.defineProperty(this.config,'__',{
+      enumerable:false,
+      configurable: false,
+      writable: true,
+      value: {}
+    });
+    controls.forEach(control=>this.config.__[control.name]=control);
   }
 
   ngOnInit() {
@@ -79,6 +91,9 @@ export class GenericFormComponent implements OnInit {
         throw new Error(`Can't find form field with name ${key}`);
       }
     });
+    //Some time setting values creates ExpressionChangedAfteritsChecked error in dev mode.
+    //This is to avoid that
+    this.cdr.detectChanges();
   }
 
   setDisableStatus(name, disable) {
