@@ -13,10 +13,14 @@ import { Validators } from '@angular/forms'
   template: `
   Sample forms
   <b>Resultant form value</b><i>{{formVar.value | json}}</i>
-  <generic-form #formVar [config]="myConfig"></generic-form>
+  <ngw-generic-form #formVar [config]="myConfig"></ngw-generic-form>
   <ng-template #myTemplate>
    This <em>is</em> a stupid template and I want to sit in the middle for no <h4>real</h4>reason
   </ng-template>
+  <ng-template #templateForLabel let-some="something">
+  This a template <a href="http://www.google.com">for</a> label. 
+  With template value {{some}}
+ </ng-template>
   <br/>
   `
 })
@@ -27,6 +31,9 @@ export class FormComponent implements AfterViewInit {
   @ViewChild('myTemplate')
   private templateVar;
 
+  @ViewChild('templateForLabel')
+  private labelTemplate;  
+
   setRandomForm() {
     this.formVar.setValues({
       name: `Name ${Math.round(Math.random() * 20)}`,
@@ -35,6 +42,8 @@ export class FormComponent implements AfterViewInit {
   }
   ngAfterViewInit() {
     (<any>this.myConfig.children[5]).template = this.templateVar;
+    (<any>this.myConfig).__["templateCheckbox"].labelTemplate = this.labelTemplate;
+    (<any>this.myConfig).__["templateCheckbox"].labelContext = {something:"see me"};
     //formVar is available for use here
     console.log(this.formVar);
   }
@@ -86,6 +95,12 @@ export class FormComponent implements AfterViewInit {
         name: 'doYouAgree',
         value: true,
         label: 'Do you Agree to use this component?'
+      },
+      {
+        type: 'checkbox',
+        name: 'templateCheckbox',
+        value: true,
+        // labelTemplate: '' //Need to initialze in ngAfterViewInit
       },
       {
           type: 'template',

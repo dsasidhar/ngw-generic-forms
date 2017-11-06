@@ -5,7 +5,7 @@ import {
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'generic-form',
+  selector: 'ngw-generic-form',
   styles: [``],
   template: `
     <form class="generic-form" (submit)="onSubmit($event)" [formGroup]="form">
