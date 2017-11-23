@@ -1,6 +1,6 @@
 {
   "name": "ngw-generic-forms",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "angular forms that can be generated from an object",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,7 +24,7 @@
     "url": "https://github.com/dsasidhar/ngw-generic-forms/issues"
   },
   "homepage": "https://github.com/dsasidhar/ngw-generic-forms#readme",
-  "dependencies": {
+  "peerDependencies": {
     "@angular/common": "^4.0.2",
     "@angular/core": "^4.0.2",
     "@angular/forms": "^4.0.2",
