@@ -96,9 +96,9 @@ export class GenericFormComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  setDisableStatus(name, disable) {
+  setDisableStatus(name, disable, options = {}) {
     if (this.form.controls[name]) {
-      this.form.controls[name][ disable ? 'disable' : 'enable']();
+      this.form.controls[name][ disable ? 'disable' : 'enable'](options);
     }
   }
 
